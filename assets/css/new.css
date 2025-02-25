@@ -5,9 +5,8 @@
 }
 
 body {
-    background: #9CECFB;
-    background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
-    background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+    background: linear-gradient(135deg, #FF6B95, #D675FC, #b835c7);
+    background-attachment: fixed;
     height: 100vh;
     width: 100%;
     margin: 0;
@@ -15,9 +14,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
-    color: white; /* Default text color for better visibility */
+    font-family: 'Poppins', sans-serif;
+    color: #F8F8F8; /* Slightly off-white for better readability */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
+
+/* Smoother Transitions */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+
+
 
 /* Header Section */
 header {
@@ -27,62 +35,131 @@ header {
 
 /* Navigation Section */
 .navsection {
-    height: 15vh;
+    height: 80px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    background: rgba(255, 255, 255, 0.1); /* Slight white transparency for contrast */
-    backdrop-filter: blur(10px); /* Blurred effect */
+    background: linear-gradient(135deg, #1f1f1f, #333); /* Modern dark gradient */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Logo */
 .logo {
+    display: flex;
+    align-items: center;
     color: white;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
 }
 
+/* Logo Icon */
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Navigation */
 nav {
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 
+/* Navbar Links */
 nav a {
     text-decoration: none;
-    color: white;
+    color: #f1f1f1;
     font-size: 18px;
-    font-weight: bold;
-    position: relative;
+    font-weight: 500;
     transition: color 0.3s ease-in-out;
+    position: relative;
+    padding: 10px 15px;
 }
 
+/* Hover Effect */
 nav a:hover {
-    color: #FFD700; /* Gold hover effect */
+    color: #00f2ff; /* Neon blue hover */
 }
 
-nav a:before {
+/* Fancy Bottom Border */
+nav a::after {
     content: "";
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
+    width: 0%;
     height: 2px;
-    background-color: #FFD700;
-    transition: width 0.4s ease-in-out;
+    background: #00f2ff;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
-nav a:hover:before {
+nav a:hover::after {
     width: 100%;
+    left: 0;
 }
+
+/* Toggle Button */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Toggle Button Animation */
+.menu-toggle.active {
+    transform: rotate(90deg);
+    
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(30, 30, 30, 0.95);
+        text-align: center;
+        padding: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    nav.active {
+        display: flex;
+        padding: 10px 0;
+    }
+
+    nav a {
+        display: block;
+        padding: 12px 0;
+        font-size: 20px;
+    }
+}
+
+
 
 /* Main Section */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 85vh;
-    padding: 0 10%;
+    height: calc(100vh - 100px); /* Adjust height to leave space below navbar */
+    padding: 400px 10%; /* Adds spacing from navbar */
+    gap: 50px; /* Space between left and right sections */
 }
 
 /* Left Content */
@@ -93,7 +170,8 @@ main {
     /* Animation - Slide from Left */
     opacity: 0;
     transform: translateX(-100px); /* Start position (shifted left) */
-    animation: slideInLeft 0.6s ease-out forwards;
+    animation: slideInLeft 0.8s ease-out forwards;
+    
 }
 
 @keyframes slideInLeft {
@@ -108,20 +186,21 @@ main {
 }
 
 .leftside h3 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 10px;
     color: #FFD700; /* Gold Color */
 }
 
 .leftside h1 {
-    font-size: 60px;
+    font-size: 56px;
     font-weight: bold;
     margin-bottom: 20px;
     color: white;
+    line-height: 1.2;
 }
 
 .leftside h2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: lighter;
     margin-bottom: 30px;
     color: #f1c40f;
@@ -171,10 +250,9 @@ main {
 }
 
 .rightside img {
-    width: 400px;
+    width: 420px;
+    max-width: 100%;
     border-radius: 20px;
-    
-    /* Animation */
     opacity: 0;
     transform: translateX(100px); /* Initially shifted right */
     animation: slideIn 1s ease-in-out forwards;
@@ -191,106 +269,234 @@ main {
     }
 }
 
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    main {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding-top: 120px; /* More spacing from navbar */
+    }
+
+    .leftside {
+        order: 2; /* Moves text below image */
+    }
+
+    .rightside {
+        order: 1;
+    }
+
+    .rightside img {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .leftside h1 {
+        font-size: 40px;
+    }
+
+    .leftside h3 {
+        font-size: 24px;
+    }
+
+    .leftside h2 {
+        font-size: 20px;
+    }
+}
+
+
 /* Careers Section */
 .careers-container {
     max-width: 1200px;
     width: 100%;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 /* Headings */
 .career-heading {
-    font-size: 36px;
-    color: #0A3D62;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 40px;
+    color: #ffffff; /* White for contrast */
+    font-weight: 700;
+    margin-bottom: 15px;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
 }
 
 .career-subheading {
     font-size: 22px;
-    margin-bottom: 30px;
-    font-weight: lighter;
+    margin-bottom: 40px;
+    font-weight: 300;
     opacity: 0.9;
+    color: #E3E3E3; /* Light gray for a modern feel */
 }
 
 /* Career Cards Wrapper */
 .career-card-container {
     display: flex;
-    justify-content: center; /* Centering cards */
-    gap: 20px; /* Space between cards */
-    flex-wrap: wrap; /* Wrap to next line if the screen is small */
+    justify-content: center;
+    gap: 25px; /* Proper spacing */
+    flex-wrap: wrap;
 }
 
 /* Individual Career Card */
 .career-card {
-    background: rgba(255, 255, 255, 0.1); /* Transparent White */
-    padding: 20px;
-    width: 260px; /* Adjusted size */
-    border-radius: 12px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1); /* Soft transparent white */
+    padding: 25px;
+    width: 280px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 /* Subtle Card Hover Effect */
 .career-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0px 12px 25px rgba(255, 255, 255, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0px 15px 35px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Card Titles */
 .career-card h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #FFD700;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #A2D2FF; /* Light Blue */
+    font-weight: 600;
 }
 
 /* Card Description */
 .career-card p {
-    font-size: 16px;
+    font-size: 17px;
     opacity: 0.9;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    color: #ffffff;
+    line-height: 1.6;
 }
 
 /* Apply Button */
 .apply-button {
-    background: linear-gradient(to right, #FFD700, #FF8C00);
-    color: black;
-    padding: 10px 18px;
+    background: linear-gradient(to right, #5E60CE, #4EA8DE); /* Deep Purple to Sky Blue */
+    color: white;
+    padding: 12px 22px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
+    text-transform: uppercase;
 }
 
 /* Apply Button Hover Effect */
 .apply-button:hover {
-    background: white;
-    color: black;
-    border: 2px solid #FFD700;
-    transform: scale(1.05);
+    background: #ffffff;
+    color: #4EA8DE;
+    border: 2px solid #4EA8DE;
+    transform: scale(1.08);
+    box-shadow: 0px 5px 20px rgba(78, 168, 222, 0.5); /* Light blue glow */
 }
 
 /* Contact Info */
 .contact-info {
-    margin-top: 30px;
-    font-size: 18px;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
 }
 
 /* Contact Email */
 .contact-info a {
     text-decoration: none;
-    color: #FFD700;
+    color: #A2D2FF; /* Light Blue */
     font-weight: bold;
     transition: color 0.3s ease-in-out;
 }
 
 .contact-info a:hover {
-    color: #FF8C00;
+    color: #4EA8DE;
+    text-decoration: underline;
 }
+/* Team Page Styling */
+body {
+    background: linear-gradient(135deg, #FF6B95, #D675FC, #b835c7);
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Header */
+ 
+
+/* Section Box */
+.box {
+    padding: 20px;
+    margin: 10px 0;
+}
+
+/* Line Separator */
+.line {
+    width: 50%;
+    height: 3px;
+    background: #fff;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+
+/* Row Flexbox */
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Team Member Box */
+.box img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    margin-bottom: 10px;
+}
+
+.box p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Contact Button */
+.contact-button {
+    background: #FFD700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.contact-button:hover {
+    background: #ffcc00;
+}
+
+

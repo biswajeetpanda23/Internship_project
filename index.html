@@ -14,7 +14,13 @@
     <header>
       <section class="navsection">
         <div class="logo">
-          <h1>ASTERICS COMPUTE</h1>
+          <h1>
+            <img src="assets/images/icon.ico" alt="logo icon" class="nav-icon"/>
+            ASTERICS COMPUTE</h1>
+
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars"></i> <!-- FontAwesome Menu Icon -->
         </div>
         <nav>
           <a href="index.html">Home</a>
@@ -46,4 +52,11 @@
       </main>
     </header>
   </body>
+  <script>
+    function toggleMenu() {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("active");
+    }
+  </script>
+  
 </html>
